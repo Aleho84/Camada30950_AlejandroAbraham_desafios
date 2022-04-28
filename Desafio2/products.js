@@ -63,11 +63,9 @@ escritura.then(function (value) {
         console.log(err); // Error!
     })
 
-
 }, function (err) {
     console.log(err); // Error!
 })
-
 
 //BORRA TODO
 // productos.deleteAll()

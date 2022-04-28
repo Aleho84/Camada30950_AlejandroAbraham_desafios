@@ -1,0 +1,14 @@
+{
+  "name": "desafio3",
+  "version": "1.0.0",
+  "description": "servidor con express",
+  "main": "server.js",
+  "scripts": {
+    "test": "nodemon ./test.js"
+  },
+  "author": "Alejandro Abraham",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.0"
+  }
+}
