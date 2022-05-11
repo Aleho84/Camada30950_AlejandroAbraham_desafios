@@ -1,0 +1,25 @@
+.titulo {
+  background-color: #74c3f0;
+  margin: 0.1rem;
+  padding: 0.1rem;
+  border: 2px solid #ccc;
+  text-align: center;  
+  font-style: italic;
+}
+
+.padre {
+  background-color: #fafafa;
+  margin: 0.1rem;
+  padding: 0.1rem;
+  border: 2px solid #ccc;
+  text-align: center;
+  width: 400px;
+}
+
+.hijo {
+  background-color: #bbbbbb;
+  margin: 1rem;
+  padding: 1rem;
+  border: 2px solid #ccc;
+  text-align: left;
+}

@@ -35,21 +35,29 @@ appEXPRESS.get('/productos', (req, res) => {
     lectura.then(function (value) {
         res.send(value)
     }, function (err) {
-        console.log(err); // Error!
+        console.log(err) // Error!
+        res.send(err)
     })
 })
 
 appEXPRESS.get('/productosRandom', (req, res) => {
     console.log(`HTTP Request ==> metodo: ${req.method} ruta: ${req.url}`)
-    console.log (productos)
-    let numRandom = Math.floor(Math.random() * (productos.maxId)) + 1;
 
     const lectura = new Promise(function (resolve, reject) {
-        resolve(productos.getById(numRandom));
+        resolve(productos.getAll())
     })
     lectura.then(function (value) {
-        res.send(value)
+        const productRnd = new Promise(function (resolve, reject) {
+            resolve(productos.getById(Math.floor(Math.random() * value.length + 1)))
+        })
+        productRnd.then(function (value) {
+            res.send(value)
+        }, function (err) {
+            console.log(err) // Error!    
+            res.send(err)
+        })
     }, function (err) {
-        console.log(err); // Error!
+        console.log(err) // Error!
+        res.send(err)
     })
 })
