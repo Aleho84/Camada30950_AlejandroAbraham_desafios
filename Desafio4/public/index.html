@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./css/style.css">
+    <link rel="icon" href="./images/favicon.ico">
     <title>Document</title>
 </head>
 
@@ -21,28 +22,15 @@
                 <br>
                 <div> Imagen <input name="imageFile" type="file" accept="image/*" required> </div>
                 <br>
-                <div> <button> Agregar </button> </div>
+                <input type="submit" value="Agregar!" class="btn btn-default">   
             </form>
             <br>
         </div>
     </div>    
-
-    <div class="padre">
-        <div class="titulo">
-            <span>Buscar por ID</span>
-        </div>
-        <div class="hijo">
-            <form action="/api/productos/" enctype="text/plain" method="get">                
-                <div> ID <input type="number" min="0" step="1" name="id" value="1" required> </div>
-                <br>                                
-                <div> <button> Buscar </button> </div>
-            </form>
-        </div>
-    </div>
     
     <div class="padre">
-        <button onclick="document.location='/api/productos'">Ver todos los productos</button>
-        <button onclick="document.location='/api/reset'">Eliminar todos los productos</button>
+        <button onclick="document.location='/api/productos'">Ver todos</button>
+        <button onclick="document.location='/api/reset'">Eliminar todos</button>
     </div>
 </body>
 

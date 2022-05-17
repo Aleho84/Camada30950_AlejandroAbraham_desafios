@@ -1,0 +1,24 @@
+<div class="padre">
+    <div class="titulo">
+        <span> Nuevo Producto </span>
+    </div>
+    <div class="hijo">
+        <form action="/productos" enctype="application/x-www-form-urlencoded" method="post">
+            <div> Titulo <input type="text" name="title" value="Producto test" required> </div>
+            <div> Precio <input type="number" min="0.00" step="0.01" name="price" value="00.00" required> </div>
+            <div> Precio <input type="text" name="thumbnail"
+                    value="https://cdn2.iconfinder.com/data/icons/flat-seo-web-ikooni/128/flat_seo3-15-128.png"
+                    required> </div>
+            <br>
+            <input type="submit" value="Agregar!" class="btn btn-default">
+        </form>
+        <br>
+        <span>
+            <%= message %>
+        </span>
+    </div>
+</div>
+
+<div class="padre">
+    <button onclick="document.location='/productos'">Ver todos</button>
+</div>

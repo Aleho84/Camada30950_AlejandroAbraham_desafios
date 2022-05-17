@@ -1,0 +1,26 @@
+<div class="padre">
+    <div class="titulo">
+        <span> Productos </span>
+    </div>
+    <div class="hijo">
+        <ul>
+            <% for(var i=0; i<products.length; i++) { %>
+                <li>
+                    <div class="product">
+                        <%= products[i].title %>
+                    </div>
+                    <div class="product">
+                        <img src="<%= products[i].thumbnail %>" width="50px" height="50px" alt="">
+                    </div>
+                    <div class="product">
+                        $<%= products[i].price %>
+                    </div>
+                </li>
+                <% } %>
+        </ul>
+    </div>
+</div>
+
+<div class="padre">
+    <button onclick="document.location='/'">Nuevo Producto</button>
+</div>

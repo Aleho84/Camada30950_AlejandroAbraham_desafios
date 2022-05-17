@@ -36,7 +36,7 @@ input[type="file"] {
   text-align: center;
   width: auto;
   min-width: 340px;
-  max-width: 820px;
+  max-width: 340px;
 }
 
 .hijo {
@@ -44,4 +44,8 @@ input[type="file"] {
   border: 1px solid #ccc;
   text-align: left;
   width: auto;
+}
+
+.product {
+  padding: 0;
 }
