@@ -7,10 +7,36 @@
 
         <%- include('../partials/nav') %>
 
-        <span>HOME</span>
+            <div class="container" style="margin-top:40px; width:250px">
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="counter-box">
+                            <i class="fa fa-shopping-cart"></i>
+                            <span class="counter"> <%= productsCount %></span>
+                            <p>Productos Disponibles</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
     </body>
 
     <%- include('../partials/scripts') %>
+
+        <script>
+            $(document).ready(function () {
+                $('.counter').each(function () {
+                    $(this).prop('Counter', 0).animate({
+                        Counter: $(this).text()
+                    }, {
+                        duration: 500,
+                        easing: 'swing',
+                        step: function (now) {
+                            $(this).text(Math.ceil(now));
+                        }
+                    });
+                });
+            });  
+        </script>
 
 </html>

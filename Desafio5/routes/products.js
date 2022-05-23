@@ -11,7 +11,13 @@ const products = new Products(_filePath, _fileFormat)
 
 //routes
 router.get('/', (req, res) => {
-    res.render('./pages/index.ejs', { title: 'SimCompras', alertIcon: "", alertMessage: "" })
+    products.getAll()
+        .then(response => {
+            res.render('./pages/index.ejs', { title: 'SimCompras', alertIcon: "", alertMessage: "", productsCount: response.length })
+        })
+        .catch(error => {
+            res.status(500).json(error.message)
+        })
 })
 
 router.get('/agregar', (req, res) => {
