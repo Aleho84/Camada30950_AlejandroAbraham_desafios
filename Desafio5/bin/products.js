@@ -156,7 +156,7 @@ class Products {
                     throw error
                 })
 
-            return newProduct
+            return products
         } catch (error) {
             throw error
         }
@@ -204,7 +204,7 @@ class Products {
                 })
 
             if (!(typeof findProduct === 'undefined')) {
-                return updateProducts
+                return products
             } else {
                 return { status: 202, message: 'Producto no encontrado' }
             }
