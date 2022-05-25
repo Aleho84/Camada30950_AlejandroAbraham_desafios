@@ -8,3 +8,4 @@
 | `Desafio 3`   | Servidor con Express                 |
 | `Desafio 4`   | API RESTful                          |
 | `Desafio 5`   | Motores de plantillas                |
+| `Desafio 6`   | Websockets                           |
