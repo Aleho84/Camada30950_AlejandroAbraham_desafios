@@ -22,7 +22,8 @@
   },
   "nodemonConfig": {
     "ignore": [
-      "./data/products.json"
+      "./data/products.json",
+      "./data/messages.json"
     ]
   }
 }
