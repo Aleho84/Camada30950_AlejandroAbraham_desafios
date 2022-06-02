@@ -6,6 +6,7 @@
 
 const express = require('express')
 const morgan = require('morgan')
+const dotenv = require('dotenv').config()
 const { Server: HTTPServer } = require('http')
 const { Server: IOServer } = require('socket.io')
 
@@ -38,28 +39,61 @@ app.use('/', rProducts)
 const rApi = require('./routes/api.js')
 app.use('/api', rApi)
 
+//server
+const _port = process.env.port || 3000
+httpServer.listen(_port, () => {
+    console.log(`HTTP Server en puerto:${_port}`)
+})
+
+//product class
+const Products = require('./bin/products.js')
+const products = new Products(process.env.productFilePath, process.env.productFileFormat)
+
+//message class
+const Messages = require('./bin/messages.js')
+const messages = new Messages(process.env.messageFilePath, process.env.messageFileFormat)
+
 //socket.io
 ioServer.on('connection', (socket) => {
     socket.emit(`server_handshake`)
-    
-    socket.on('client_handshake', () => {        
-        socket.emit('message', 'Conectado')
+
+    socket.on('client_handshake', () => {
         console.log(`cliente [${socket.id}] conectado`)
     })
 
-    socket.on('disconnect', () => {        
-        socket.emit('message', 'Desconectado')
+    socket.on('disconnect', () => {
         console.log(`cliente [${socket.id}] desconectado`)
     })
 
-    socket.on('product_change', () => {        
-        ioServer.sockets.emit('product_change', 'los productos cambiaron')
-        console.log(`cliente [${socket.id}] cambio los productos`)
-    })
-})
+    socket.on('product_add', data => {
+        console.log(`cliente [${socket.id}] agrego un producto`, data)
+        products.add(data)
+            .then(response => {
+                if (typeof response.status === 'undefined') {
+                    ioServer.sockets.emit('product_change', data)
+                    socket.emit('message', { alertIcon: "success", alertMessage: "Producto Agregado" })
 
-//server
-const _port = 3000
-httpServer.listen(_port, () => {
-    console.log(`HTTP Server en puerto:${_port}`)
+                } else {
+                    socket.emit('message', { alertIcon: "error", alertMessage: response.message })
+                }
+            })
+            .catch(error => {
+                socket.emit('message', { alertIcon: "error", alertMessage: error.message })
+            })
+    })
+
+    socket.on('message_add', data => {
+        console.log(`cliente [${socket.id}] dejo un mensaje nuevo`, data)
+        messages.add(data)
+        .then(response => {
+            if (typeof response.status === 'undefined') {
+                ioServer.sockets.emit('message_change', data)
+            } else {
+                socket.emit('message', { alertIcon: "error", alertMessage: response.message })
+            }
+        })
+        .catch(error => {
+            socket.emit('message', { alertIcon: "error", alertMessage: error.message })
+        })  
+    })
 })
