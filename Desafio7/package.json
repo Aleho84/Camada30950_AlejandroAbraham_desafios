@@ -1,0 +1,30 @@
+{
+  "name": "desafio6",
+  "version": "1.0.0",
+  "description": "Websockets",
+  "main": "server.js",
+  "scripts": {
+    "prod": "node .",
+    "dev": "nodemon .",
+    "DB_ini": "node bin/mariaDB_ini.js",
+    "test": "nodemon test/test.js"
+  },
+  "author": "Alejandro Abraham",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.0.1",
+    "ejs": "^3.1.8",
+    "express": "^4.18.1",
+    "knex": "^2.1.0",
+    "morgan": "^1.10.0",
+    "mysql": "^2.18.1",
+    "socket.io": "^4.5.1",
+    "sqlite3": "^5.0.8"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.16"
+  },
+  "nodemonConfig": {
+    "ignore": []
+  }
+}

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<%- include('../partials/head', {title}) %>
+
+    <body>
+
+        <%- include('../partials/websocket') %>
+            <%- include('../partials/nav') %>
+
+                <div class="container-sm" style="max-width:540px;">
+                    <br>
+                    <h2 class="tRelieve">Agregar Producto</h2>
+                    <div class="input-group mb-2">
+                        <label for="title" class="input-group-text">Titulo</label>
+                        <input id="title" class="form-control" type="text" name="title" value="Producto test" required>
+                    </div>
+                    <div class="input-group mb-3">
+                        <label for="price" class="input-group-text">Precio</label>
+                        <span class="input-group-text">$</span>
+                        <input id="price" class="form-control" type="number" min="0.00" step="0.01" name="price"
+                            value="1" required>
+                    </div>
+                    <div class="input-group mb-3">
+                        <label for="thumbnail" class="input-group-text">Imagen</label>
+                        <input id="thumbnail" class="form-control" type="text" name="thumbnail"
+                            value="https://cdn2.iconfinder.com/data/icons/flat-seo-web-ikooni/128/flat_seo3-15-128.png"
+                            required>
+                    </div>
+                    <div class="mb-3">
+                        <button id="add_button" class="btn btn-primary mb-3">Agregar</button>
+                    </div>
+                </div>
+
+                <div class="container-sm" style="max-width:540px">
+                    <br>
+                    <h2 class="tRelieve">Productos</h2>
+                    <table id="products_table" class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Titulo</th>
+                                <th scope="col">Precio</th>
+                                <th scope="col">Foto</th>
+                            </tr>
+                        </thead>
+                        <tbody id="products">
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="container-sm" style="max-width:540px">
+                    <br>
+                    <h2 class="tRelieve">Centro de Mensajes</h2>
+                    <div class="input-group mb-2">
+                        <label for="email" class="input-group-text">E-Mail</label>
+                        <input id="email" class="form-control" type="email" name="email" required>
+                    </div>
+                    <hr>
+                    <div id="centro_mensajes">
+                    </div>
+                    <hr>
+                    <div class="input-group mb-2">
+                        <label for="message" class="input-group-text">Mensaje</label>
+                        <input id="message" class="form-control" type="text" name="message" required>
+                    </div>
+                    <div class="mb-3">
+                        <button id="message_button" class="btn btn-primary mb-3">Enviar</button>
+                    </div>
+
+                </div>
+
+    </body>
+
+    <%- include('../partials/scripts') %>
+
+</html>

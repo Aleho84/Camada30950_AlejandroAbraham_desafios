@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<%- include('../partials/head', {title}) %>
+
+    <body>
+
+        <%- include('../partials/nav') %>
+
+            <div class="container-fluid" style="margin-top:40px; width:250px">
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="counter-box">
+                            <i class="fa fa-shopping-cart"></i>
+                            <span class="counter">
+                                <%= productsCount %>
+                            </span>
+                            <p>Productos Disponibles</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+    </body>
+
+    <%- include('../partials/scripts') %>
+
+</html>

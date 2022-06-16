@@ -9,3 +9,4 @@
 | `Desafio 4`   | API RESTful                          |
 | `Desafio 5`   | Motores de plantillas                |
 | `Desafio 6`   | Websockets                           |
+| `Desafio 7`   | Nuestra Primera Base de Datos        |
