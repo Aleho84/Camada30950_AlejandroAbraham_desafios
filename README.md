@@ -10,3 +10,4 @@
 | `Desafio 5`   | Motores de plantillas                |
 | `Desafio 6`   | Websockets                           |
 | `Desafio 7`   | Nuestra Primera Base de Datos        |
+| `Desafio 8`   | MONGODB                              |

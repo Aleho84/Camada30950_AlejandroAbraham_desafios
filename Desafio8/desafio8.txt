@@ -1,0 +1,48 @@
+mongosh "mongodb+srv://alehomongodb.kgzcr.gcp.mongodb.net/ecommerce" --apiVersion 1 --username ecomerce
+(password: ec123)
+
+use ecommerce
+
+db.products.insert({ "title": "Producto01", "price": 100.00, "thumbnail": "https://cdn4.iconfinder.com/data/icons/for-your-interface-free-samples/128/Label-256.png" })
+db.products.insert({ "title": "Producto02", "price": 500.00, "thumbnail": "https://cdn4.iconfinder.com/data/icons/for-your-interface-free-samples/128/Label-256.png" })
+db.products.insert({ "title": "Producto03", "price": 1000.00, "thumbnail": "https://cdn4.iconfinder.com/data/icons/for-your-interface-free-samples/128/Label-256.png" })
+db.products.insert({ "title": "Producto04", "price": 1500.00, "thumbnail": "https://cdn4.iconfinder.com/data/icons/for-your-interface-free-samples/128/Label-256.png" })
+db.products.insert({ "title": "Producto05", "price": 2000.00, "thumbnail": "https://cdn4.iconfinder.com/data/icons/for-your-interface-free-samples/128/Label-256.png" })
+db.products.insert({ "title": "Producto06", "price": 2500.00, "thumbnail": "https://cdn4.iconfinder.com/data/icons/for-your-interface-free-samples/128/Label-256.png" })
+db.products.insert({ "title": "Producto07", "price": 3000.00, "thumbnail": "https://cdn4.iconfinder.com/data/icons/for-your-interface-free-samples/128/Label-256.png" })
+db.products.insert({ "title": "Producto08", "price": 3500.00, "thumbnail": "https://cdn4.iconfinder.com/data/icons/for-your-interface-free-samples/128/Label-256.png" })
+db.products.insert({ "title": "Producto09", "price": 4000.00, "thumbnail": "https://cdn4.iconfinder.com/data/icons/for-your-interface-free-samples/128/Label-256.png" })
+db.products.insert({ "title": "Producto10", "price": 4500.00, "thumbnail": "https://cdn4.iconfinder.com/data/icons/for-your-interface-free-samples/128/Label-256.png" })
+
+db.messages.insert({ "email": "usuario01@gmail.com", "timestamp": ISODate(), "message": "mensaje de prueba 01" })
+db.messages.insert({ "email": "usuario02@gmail.com", "timestamp": ISODate(), "message": "mensaje de prueba 02" })
+db.messages.insert({ "email": "usuario03@gmail.com", "timestamp": ISODate(), "message": "mensaje de prueba 03" })
+db.messages.insert({ "email": "usuario04@gmail.com", "timestamp": ISODate(), "message": "mensaje de prueba 04" })
+db.messages.insert({ "email": "usuario05@gmail.com", "timestamp": ISODate(), "message": "mensaje de prueba 05" })
+db.messages.insert({ "email": "usuario06@gmail.com", "timestamp": ISODate(), "message": "mensaje de prueba 06" })
+db.messages.insert({ "email": "usuario07@gmail.com", "timestamp": ISODate(), "message": "mensaje de prueba 07" })
+db.messages.insert({ "email": "usuario08@gmail.com", "timestamp": ISODate(), "message": "mensaje de prueba 08" })
+db.messages.insert({ "email": "usuario09@gmail.com", "timestamp": ISODate(), "message": "mensaje de prueba 09" })
+db.messages.insert({ "email": "usuario10@gmail.com", "timestamp": ISODate(), "message": "mensaje de prueba 10" })
+
+db.products.find()
+db.messages.find()
+
+db.products.find().count()
+db.messages.find().count()
+
+db.products.insert({ "title": "Nuevo Producto", "price": 5000.00, "thumbnail": "https://cdn4.iconfinder.com/data/icons/for-your-interface-free-samples/128/Label-256.png" })
+
+db.products.find({ price:{ '$lt': 1000 } })
+db.products.find({ $and: [{ price: {'$gte' : 1000} }, { price:{'$lte' : 5000} }] } )
+db.products.find({ price:{ '$gt' : 3000 } })
+db.products.find().sort({price:1}).skip(2).limit(1)
+
+db.products.updateMany({}, {$set: {"stock": 100}})
+db.products.updateMany({price: {$gt: 4000 }}, {$set: {"stock": 0}})
+
+db.products.deleteMany({price: {$lt: 1000 }})
+
+use admin
+db.createUser({user: "pepe",pwd: "asd456",roles: [{ role: "read", db: "ecommerce" }]})
+
