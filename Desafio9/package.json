@@ -1,7 +1,9 @@
 {
-  "name": "desafio9",
+  "name": "desafio8",
   "version": "1.0.0",
-  "description": "Nuestra Primera Base de Datos",
+  "description": "Mocks y normalización",
+  "homepage": "https://github.com/Aleho84/Camada30950_AlejandroAbraham",
+  "bugs": "https://github.com/Aleho84/Camada30950_AlejandroAbraham/issues",
   "main": "server.js",
   "scripts": {
     "prod": "node .",
@@ -9,9 +11,14 @@
     "DB_ini": "node bin/mariaDB_ini.js",
     "test": "nodemon test/test.js"
   },
-  "author": "Alejandro Abraham",
+  "author": {
+    "name": "Alejandro Abraham",
+    "email" : "alejandro.r.abraham@gmail.com",
+    "url" : "https://github.com/Aleho84/"
+  },
   "license": "ISC",
   "dependencies": {
+    "@faker-js/faker": "^7.3.0",
     "dotenv": "^16.0.1",
     "ejs": "^3.1.8",
     "express": "^4.18.1",

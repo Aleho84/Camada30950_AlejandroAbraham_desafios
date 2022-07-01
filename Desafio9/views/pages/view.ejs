@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<%- include('../partials/head', {title}) %>
+
+    <body>
+
+        <%- include('../partials/nav') %>
+        
+            <div class="container-sm" style="max-width:540px">
+                <div class="row">
+                    <% for(var i=0; i<products.length; i++) { %>
+                        <div class="col mt-3 mb-3">
+                            <div class="card" style="width: 8rem;">
+                                <img src="<%= products[i].thumbnail %>" class="card-img-top p-1"
+                                    alt="<%= products[i].title %>">
+                                <div class="card-body">
+                                    <p class="card-title">
+                                        <%= products[i].title %>
+                                    </p>
+                                </div>
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item">$<%= products[i].price %>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <% } %>
+                </div>
+            </div>
+
+    </body>
+
+    <%- include('../partials/scripts') %>
+
+</html>

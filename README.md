@@ -11,3 +11,4 @@
 | `Desafio 6`   | Websockets                           |
 | `Desafio 7`   | Nuestra Primera Base de Datos        |
 | `Desafio 8`   | MONGODB                              |
+| `Desafio 9`   | Mocks y normalización                |
