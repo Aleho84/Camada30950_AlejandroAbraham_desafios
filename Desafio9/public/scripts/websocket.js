@@ -23,14 +23,25 @@ add_button.addEventListener('click', (event) => {
 //Centro de Mensajes
 const message_button = document.querySelector("#message_button")
 const email = document.querySelector("#email")
+const firstname = document.querySelector("#firstname")
+const lastname = document.querySelector("#lastname")
+const age = document.querySelector("#age")
+const nickname = document.querySelector("#nickname")
+const avatar = document.querySelector("#avatar")
 const message = document.querySelector("#message")
 
 message_button.addEventListener('click', (event) => {
     let newMessage = {
         email: email.value,
-        timestamp: timeStamp(),
-        message: message.value
+        firstname: firstname.value,
+        lastname: lastname.value,
+        age: age.value,
+        nickname: nickname.value,
+        avatar: avatar.value,
+        message: message.value,
+        timestamp: timeStamp()
     }
+    console.log(avatar.vlaue)
     if (validarMessage(newMessage)) {
         socket.emit('message_add', newMessage)
     }
@@ -111,7 +122,19 @@ function messagesLoad() {
 
 function messagesAdd(newMessage) {
     const tbody = document.getElementById('centro_mensajes')
-    appendMessage(tbody, newMessage)
+    const formatedMessage = {
+        author: {
+            id: newMessage.email,
+            nombre: newMessage.firstname,
+            apellido: newMessage.lastname,
+            edad: newMessage.age,
+            alias: newMessage.nickname,
+            avatar: newMessage.avatar
+        },
+        text: newMessage.message,
+        created: newMessage.timestamp
+    }
+    appendMessage(tbody, formatedMessage)
 }
 
 
@@ -145,23 +168,30 @@ function appendProduct(tbody, product) {
 }
 
 function appendMessage(tbody, msg) {
+    let author = msg.author
+
     let email = createNode('span')
     email.className = 'sp_email'
-    email.innerHTML = `${msg.email} `
+    email.innerHTML = `${author.id} `
 
     let timestamp = createNode('span')
     timestamp.className = 'sp_timestamp'
-    timestamp.innerHTML = `[${msg.timestamp}]: `
+    timestamp.innerHTML = `[${msg.created}]: `
 
     let message = createNode('span')
     message.className = 'sp_message'
-    message.innerHTML = `${msg.message}`
+    message.innerHTML = `${msg.text}`
+
+    let avatar = createNode('img')
+    avatar.className = 'sp_avatar'
+    avatar.src = author.avatar
 
     let br = createNode('br')
 
     append(tbody, email)
     append(tbody, timestamp)
     append(tbody, message)
+    append(tbody, avatar)
     append(tbody, br)
 }
 

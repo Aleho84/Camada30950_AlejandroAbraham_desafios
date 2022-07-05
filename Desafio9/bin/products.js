@@ -1,10 +1,8 @@
-//Database
-const _options = JSON.parse(process.env.knex_mysql)
+// schema
+const ProductsSchema = require('../models/products.js')
 
 class Products {
-    constructor() {
-        this.knex = require('knex')(_options)
-    }
+    constructor() { }
 
     #validateProduct(product) {
         //valida que el producto a agregar tenga los campos correctos.
@@ -38,21 +36,9 @@ class Products {
     async getAll() {
         try {
             let products = []
-
-            await this.knex.from('products').select('*')
-                .then(rows => {
-                    let product = {}
-                    rows.forEach(row => {
-                        product = {
-                            id: row.id,
-                            title: row.title,
-                            price: row.price,
-                            thumbnail: row.thumbnail
-                        }
-                        products.push(product)
-                        product = {}
-                    })
-                    return products
+            await ProductsSchema.find({})
+                .then((response) => {
+                    products = response
                 })
                 .catch(error => {
                     throw error
@@ -66,25 +52,11 @@ class Products {
 
     async getById(id) {
         try {
-            if (isNaN(id)) {
-                return { status: 400, message: 'ID invalido' }
-            } else {
-                id = parseInt(id)
-            }
-
             let product = {}
 
-            await this.knex.from('products').select('*').where({ id: id })
-                .then(rows => {
-                    rows.forEach(row => {
-                        product = {
-                            id: row.id,
-                            title: row.title,
-                            price: row.price,
-                            thumbnail: row.thumbnail
-                        }
-                    })
-                    return product
+            await ProductsSchema.find({ id })
+                .then((response) => {
+                    product = response
                 })
                 .catch(error => {
                     throw error
@@ -108,50 +80,22 @@ class Products {
                 return { status: 400, message: 'Producto invalido' }
             }
 
-            let newID = 0
+            let newID = ''
+            const addProduct = new ProductsSchema({
+                title: newProduct.title,
+                price: newProduct.price,
+                thumbnail: newProduct.thumbnail
+            })            
 
-            await this.knex('products').insert(newProduct)
-                .then(response => {
-                    newID = response
+            await addProduct.save()
+                .then((response) => {
+                    newID = response._id
                 })
                 .catch(error => {
                     throw error
                 })
 
             return newID
-        } catch (error) {
-            throw error
-        }
-    }
-
-    async update(product) {
-        try {
-            product.id = parseInt(product.id)
-            product.price = parseFloat(product.price)
-
-            if (!this.#validateProduct(product)) {
-                return { status: 400, message: 'Producto invalido' }
-            }
-
-            if (isNaN(product.id)) {
-                return { status: 400, message: 'ID invalido' }
-            }
-
-            let updated_flag = false
-
-            await this.knex('products').where({ id: product.id }).update(product)
-                .then(response => {
-                    updated_flag = response
-                })
-                .catch(error => {
-                    throw error
-                })
-
-            if (updated_flag) {
-                return product
-            } else {
-                return { status: 202, message: 'Producto no encontrado' }
-            }
         } catch (error) {
             throw error
         }

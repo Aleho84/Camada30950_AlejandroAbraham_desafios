@@ -74,3 +74,8 @@
   color: #389c19;
   text-shadow: 0px 0px 2px #469e2b;
 }
+
+.sp_avatar {
+  height: 24px;
+  width: 24px;
+}

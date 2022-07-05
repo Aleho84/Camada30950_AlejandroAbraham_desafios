@@ -1,28 +1,16 @@
-const _options = JSON.parse(process.env.knex_msqlite3)
+// schema
+const MessagesSchema = require('../models/messages.js')
 
 class Messages {
-    constructor() {
-        this.knex = require('knex')(_options)
-    }
+    constructor() { }
 
     async getAll() {
         try {
             let messages = []
 
-            await this.knex.from('messages').select('*')
-                .then(rows => {
-                    let message = {}
-                    rows.forEach(row => {
-                        message = {
-                            id: row.id,
-                            email: row.email,
-                            timestamp: row.timestamp,
-                            message: row.message
-                        }
-                        messages.push(message)
-                        message = {}
-                    })
-                    return messages
+            await MessagesSchema.find({})
+                .then((response) => {
+                    messages = response
                 })
                 .catch(error => {
                     throw error
@@ -36,11 +24,22 @@ class Messages {
 
     async add(newMessage) {
         try {
-            let newID = 0
+            let newID = ''
+            const addMessage = new MessagesSchema({
+                author: {
+                    id: newMessage.email,
+                    nombre: newMessage.firstname,
+                    apellido: newMessage.lastname,
+                    edad: newMessage.age,
+                    alias: newMessage.nickname,
+                    avatar: newMessage.avatar
+                },
+                text: newMessage.message
+            })
 
-            await this.knex('messages').insert(newMessage)
-                .then(response => {
-                    newID = response
+            await addMessage.save()
+                .then((response) => {
+                    newID = response._id
                 })
                 .catch(error => {
                     throw error

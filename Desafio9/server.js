@@ -1,39 +1,43 @@
-// *****************************************************
-// *   Clase 16  : SQL y Node.js                       *
-// *   Desafio 8 : "Mocks y normalización "            *
-// *   Alumno    : Alejandro Abraham                   *
-// *****************************************************
+// ********************************************************
+// *   Clase 22  : Trabajando con Datos - Normalización   *
+// *   Desafio 9 : "Mocks y normalización "               *
+// *   Alumno    : Alejandro Abraham                      *
+// ********************************************************
 
 // NOTAS:
 // los datos de conexion se encuentran en el archivo .env
-// para inicializar la base de datos MariaDB ejecutar 'npm run DB_ini'
 
 const express = require('express')
+const Mongoose = require ('mongoose')
 const morgan = require('morgan')
 const dotenv = require('dotenv').config()
 const { Server: HTTPServer } = require('http')
 const { Server: IOServer } = require('socket.io')
+
+// classes
 const Products = require('./bin/products.js')
 const Messages = require('./bin/messages.js')
 
-//initializers
+// initializers
 const app = express()
 const httpServer = new HTTPServer(app)
 const ioServer = new IOServer(httpServer)
-const products = new Products()
+const serverPort = process.env.serverPort || 3000
+const dbURI = process.env.dbURI || 'mongodb+srv://dev:dMNMOqQoCQpZthbh@alehomongodb-kgzcr.gcp.mongodb.net/development'
 const messages = new Messages()
+const products = new Products()
 
-//middlewares
+// middlewares
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 app.use(express.static(__dirname + '/public'))
 app.use(morgan('dev'))
 
-//views
+// view
 app.set('views', './views')
 app.set('view engine', 'ejs')
 
-//error handler
+// error handler
 app.use(function (err, req, res, next) {
     res.status(500).json({
         code: err.code,
@@ -42,19 +46,31 @@ app.use(function (err, req, res, next) {
     })
 })
 
-//routes
+// rutas
 const rProducts = require('./routes/products.js')
 app.use('/', rProducts)
 const rApi = require('./routes/api.js')
 app.use('/api', rApi)
 
-//server
-const _port = process.env.port || 3000
-httpServer.listen(_port, () => {
-    console.log(`HTTP Server en puerto:${_port}`)
+// server
+httpServer.listen(serverPort, () => {
+    console.log(`HTTP Server en puerto:${serverPort}`)
 })
 
-//socket.io
+// mongoose
+Mongoose.connect(dbURI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+}, (error) => {
+    if (error) {
+        console.log(`MONGODB: Error al conectar [${error}]`)
+        process.exit()
+    } else {
+        console.log(`MONGODB: Conectado`)
+    }
+})
+
+// socket.io
 ioServer.on('connection', (socket) => {
     socket.emit(`server_handshake`)
 
@@ -86,15 +102,15 @@ ioServer.on('connection', (socket) => {
     socket.on('message_add', data => {
         console.log(`cliente [${socket.id}] dejo un mensaje nuevo`, data)
         messages.add(data)
-            .then(response => {
-                if (typeof response.status === 'undefined') {
-                    ioServer.sockets.emit('message_change', data)
-                } else {
-                    socket.emit('message', { alertIcon: "error", alertMessage: response.message })
-                }
-            })
-            .catch(error => {
-                socket.emit('message', { alertIcon: "error", alertMessage: error.message })
-            })
+        .then(response => {
+            if (typeof response.status === 'undefined') {
+                ioServer.sockets.emit('message_change', data)
+            } else {
+                socket.emit('message', { alertIcon: "error", alertMessage: response.message })
+            }
+        })
+        .catch(error => {
+            socket.emit('message', { alertIcon: "error", alertMessage: error.message })
+        })  
     })
 })
