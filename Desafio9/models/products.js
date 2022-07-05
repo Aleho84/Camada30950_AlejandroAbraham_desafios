@@ -20,8 +20,8 @@ const productsSchema = mongoose.Schema({
         type: Date,
         default: Date.now
     }
-});
+})
 
-const ProductsSchema = mongoose.model('products', productsSchema);
+const ProductsSchema = mongoose.model('products', productsSchema)
 
-module.exports = ProductsSchema;
+module.exports = ProductsSchema

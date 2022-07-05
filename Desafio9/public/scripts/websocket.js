@@ -39,7 +39,7 @@ message_button.addEventListener('click', (event) => {
         nickname: nickname.value,
         avatar: avatar.value,
         message: message.value,
-        timestamp: timeStamp()
+        timestamp: new Date()
     }
     console.log(avatar.vlaue)
     if (validarMessage(newMessage)) {
@@ -176,7 +176,7 @@ function appendMessage(tbody, msg) {
 
     let timestamp = createNode('span')
     timestamp.className = 'sp_timestamp'
-    timestamp.innerHTML = `[${msg.created}]: `
+    timestamp.innerHTML = `[${timeStampConv(msg.created)}]: `
 
     let message = createNode('span')
     message.className = 'sp_message'
@@ -195,8 +195,8 @@ function appendMessage(tbody, msg) {
     append(tbody, br)
 }
 
-function timeStamp() {
-    const newDate = new Date()
+function timeStampConv(date) {
+    const newDate = new Date(date)
     const daySeparator = '-'
     const hourSeparator = ':'
 
@@ -213,7 +213,7 @@ function timeStamp() {
     let second = newDate.getSeconds()
     second = (second.toFixed() < 10) ? '0' + second : second
 
-    return `${year}${daySeparator}${month}${daySeparator}${day} ${hour}${hourSeparator}${minute}${hourSeparator}${second}`
+    return `${year}${daySeparator}${month}${daySeparator}${day} ${hour}${hourSeparator}${minute}`
 }
 
 function validarProduct(product) {

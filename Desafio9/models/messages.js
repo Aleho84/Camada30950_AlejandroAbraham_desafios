@@ -37,8 +37,8 @@ const messagesSchema = mongoose.Schema({
         type: Date,
         default: Date.now
     }
-});
+})
 
-const MessagesSchema = mongoose.model('messages', messagesSchema);
+const MessagesSchema = mongoose.model('messages', messagesSchema)
 
-module.exports = MessagesSchema;
+module.exports = MessagesSchema
