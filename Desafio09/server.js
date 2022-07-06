@@ -1,8 +1,8 @@
-// ********************************************************
-// *   Clase 22  : Trabajando con Datos - Normalización   *
-// *   Desafio 9 : "Mocks y normalización "               *
-// *   Alumno    : Alejandro Abraham                      *
-// ********************************************************
+// *********************************************************
+// *   Clase 22   : Trabajando con Datos - Normalización   *
+// *   Desafio 09 : "Mocks y normalización "               *
+// *   Alumno     : Alejandro Abraham                      *
+// *********************************************************
 
 // NOTAS:
 // los datos de conexion se encuentran en el archivo .env

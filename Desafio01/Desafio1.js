@@ -1,7 +1,7 @@
 // *****************************************************
-// *   Clase 2   : Principios básicos de Javascript    *
-// *   Desafio 1 : "Clases"                            *
-// *   Alumno    : Alejandro Abraham                   *
+// *   Clase 02   : Principios básicos de Javascript   *
+// *   Desafio 01 : Clases                             *
+// *   Alumno     : Alejandro Abraham                  *
 // *****************************************************
 
 class Usuario {

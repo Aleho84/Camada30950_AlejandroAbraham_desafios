@@ -1,12 +1,8 @@
-// *****************************************************
-// *   Clase 16  : SQL y Node.js                       *
-// *   Desafio 7 : "Nuestra Primera Base de Datos"     *
-// *   Alumno    : Alejandro Abraham                   *
-// *****************************************************
-
-// NOTAS:
-// los datos de conexion se encuentran en el archivo .env
-// para inicializar la base de datos MariaDB ejecutar 'npm run DB_ini'
+// ******************************************************
+// *   Clase 12   : Aplicación chat con Websocket       *
+// *   Desafio 06 : "Websockets"                        *
+// *   Alumno     : Alejandro Abraham                   *
+// ******************************************************
 
 const express = require('express')
 const morgan = require('morgan')
@@ -51,7 +47,7 @@ httpServer.listen(_port, () => {
 
 //product class
 const Products = require('./bin/products.js')
-const products = new Products()
+const products = new Products(process.env.productFilePath, process.env.productFileFormat)
 
 //message class
 const Messages = require('./bin/messages.js')

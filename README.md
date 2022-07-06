@@ -3,13 +3,13 @@
 
 | Desafio       | Titulo                               |
 | ------------- | ------------------------------------ |
-| `Desafio 1`   | Clases                               |
-| `Desafio 2`   | Manejo de Archivos en Javascript     |
-| `Desafio 3`   | Servidor con Express                 |
-| `Desafio 4`   | API RESTful                          |
-| `Desafio 5`   | Motores de plantillas                |
-| `Desafio 6`   | Websockets                           |
-| `Desafio 7`   | Nuestra Primera Base de Datos        |
-| `Desafio 8`   | MONGODB                              |
-| `Desafio 9`   | Mocks y normalización                |
+| `Desafio 01`  | Clases                               |
+| `Desafio 02`  | Manejo de Archivos en Javascript     |
+| `Desafio 03`  | Servidor con Express                 |
+| `Desafio 04`  | API RESTful                          |
+| `Desafio 05`  | Motores de plantillas                |
+| `Desafio 06`  | Websockets                           |
+| `Desafio 07`  | Nuestra Primera Base de Datos        |
+| `Desafio 08`  | MONGODB                              |
+| `Desafio 09`  | Mocks y normalización                |
 | `Desafio 10`  | Login por formulario                 |

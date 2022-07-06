@@ -1,8 +1,8 @@
-// *****************************************************
-// *   Clase 8   : Router & Multer                     *
-// *   Desafio 4 : "API RESTful"                       *
-// *   Alumno    : Alejandro Abraham                   *
-// *****************************************************
+// ***********************************************
+// *   Clase 10   : Pug & Ejs                    *
+// *   Desafio 05 : "Motores de plantillas"      *
+// *   Alumno     : Alejandro Abraham            *
+// ***********************************************
 
 const express = require('express')
 const morgan = require('morgan')
@@ -15,6 +15,10 @@ app.use(express.urlencoded({ extended: true }))
 app.use(express.static(__dirname + '/public'))
 app.use(morgan('dev'))
 
+//view
+app.set('views', './views')
+app.set('view engine', 'ejs')
+
 //error handler
 app.use(function (err, req, res, next) {
     res.status(500).json({
@@ -26,7 +30,8 @@ app.use(function (err, req, res, next) {
 
 //rutas
 const rProducts = require('./routes/products.js')
-app.use('/api', rProducts)
+app.use('/', rProducts)
 
+//server
 const _port = 3000
 app.listen(_port)

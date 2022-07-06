@@ -1,8 +1,8 @@
-// *****************************************************
-// *   Clase 4   : Manejo de Archivos en Javascript    *
-// *   Desafio 2 : "Manejo de Archivos en Javascript"  *
-// *   Alumno    : Alejandro Abraham                   *
-// *****************************************************
+// ******************************************************
+// *   Clase 04   : Manejo de Archivos en Javascript    *
+// *   Desafio 02 : Manejo de Archivos en Javascript    *
+// *   Alumno     : Alejandro Abraham                   *
+// ******************************************************
 
 console.clear()
 

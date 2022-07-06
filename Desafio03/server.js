@@ -1,8 +1,8 @@
-// *****************************************************
-// *   Clase 6   : Servidor Web                        *
-// *   Desafio 3 : "Servidor con Express"              *
-// *   Alumno    : Alejandro Abraham                   *
-// *****************************************************
+// ******************************************************
+// *   Clase 06   : Servidor Web                        *
+// *   Desafio 03 : "Servidor con Express"              *
+// *   Alumno     : Alejandro Abraham                   *
+// ******************************************************
 
 console.clear()
 
